@@ -1,0 +1,24 @@
+---
+- name: Create temp directory to download AWS cli
+  file:
+    path: /tmp/aws
+    state: directory 
+
+- name: Download AWS cli v2
+  get_url: 
+    url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    dest: /tmp/aws/awscliv2.zip
+
+- name: Unpack AWS cli v2
+  unarchive: 
+    src: /tmp/aws/awscliv2.zip
+    dest: /tmp/aws/ 
+
+- name: Install AWS cli v2
+  become: true
+  command: /tmp/aws/aws/install --update
+
+- name: Remove downloaded sources
+  file:
+    path: /tmp/aws
+    state: absent 

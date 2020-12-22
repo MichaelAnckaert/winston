@@ -1,0 +1,14 @@
+---
+- name: Create local projects directory
+  file:
+    path: ~/projects
+    state: directory
+
+- name: Get a local copy of my dotfiles
+  git:
+    repo=git@github.com:MichaelAnckaert/dotfiles.git
+    dest=~/.dotfiles
+    accept_hostkey=yes
+
+- name: Link dotfiles
+  command: bash ~/.dotfiles/install.sh || true

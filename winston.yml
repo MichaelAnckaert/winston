@@ -1,0 +1,24 @@
+---
+- name: Setup Winston 
+  hosts: localhost
+  roles:
+   - dotfiles
+   - role: gantsign.golang
+     golang_gopath: '$HOME/go' 
+   - commandline-tools
+   - aws-cli-v2
+   - oh-my-zsh
+   - desktop
+
+- name: Change default shell
+  become: no
+  hosts: localhost
+  vars:
+    the_user: "{{ ansible_user_id }}"
+  tasks:
+    - name: change user shell to zsh 
+      become: yes
+      user:
+        name: "{{ the_user }}"
+        shell: /bin/zsh
+ 

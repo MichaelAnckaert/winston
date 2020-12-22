@@ -1,0 +1,15 @@
+---
+- name: Install i3 and related programs
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  loop:
+   - i3
+   - i3lock
+   - i3status 
+   - polybar
+   - rofi
+   - feh
+   - playerctl
+   - terminator
