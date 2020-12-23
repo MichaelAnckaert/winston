@@ -1,0 +1,5 @@
+---
+- name: Set system hostname
+  become: true
+  hostname:
+    name: winston.local

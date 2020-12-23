@@ -2,6 +2,7 @@
 - name: Setup Winston 
   hosts: localhost
   roles:
+   - system
    - dotfiles
    - role: gantsign.golang
      golang_gopath: '$HOME/go' 
